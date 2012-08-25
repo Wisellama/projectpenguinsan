@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import Power;
 public class Player extends Character{
     ArrayList<Power> abilities = new ArrayList<Power>();
-    public Player(){
+    public Player(float x, float y){
+	super xPosition = x;
+	super yPosition = y;
     }
     
     public void addPower(Power power){

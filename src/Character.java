@@ -26,5 +26,9 @@ public class Character {
 	xPosition += x;
 	yPosition += y;
     }
-
+    
+    public int[] getPosition(){
+	int[] result = [xPosition, yPosition];
+	return result;
+    }
 }
