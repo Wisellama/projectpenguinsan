@@ -41,8 +41,8 @@ public class Character {
 	yPosition += y;
     }
     
-    public int[] getPosition(){
-	int[] result = [xPosition, yPosition];
+    public float[] getPosition(){
+	float[] result = {xPosition, yPosition};
 	return result;
     }
     public void move(Directions d) {
