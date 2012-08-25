@@ -1,8 +1,10 @@
 public class Character {
     public enum Directions {NORTH,SOUTH,EAST,WEST,NORTHWEST,NORTHEAST,SOUTHWEST,SOUTHEAST};
 
+    public boolean isDrawn;
+
     protected float xPosition, yPosition;
-    protected boolean alive, isDrawn;
+    protected boolean alive;
     protected float[] color;//temporary until we have graphics, just color of square
     protected float xVelocity, yVelocity;
     
