@@ -2,6 +2,8 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.Sphere;
+
 import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*; //don't have to type GL11.stuff just type stuff.
@@ -36,11 +38,6 @@ public class View {
     	}
     }
  
-	while (!Display.isCloseRequested()) {
-	    Display.update();
-	}
- 
-	Display.destroy();
     }
  
     public static void main(String[] argv) {
@@ -53,11 +50,23 @@ public class View {
 	    glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
 	    	
 	    // draw quad
-	    glBegin(GL11.GL_QUADS);
+	    glBegin(GL_QUADS);
 	    glVertex2f(0,0);
 		glVertex2f(40,0);
 		glVertex2f(40,30);
 		glVertex2f(0,30);
 	    glEnd();
+    }
+
+    public void draw(Character thing) {
+    if(thing.isAlive() && !thing.isDrawn()) {
+	glPushMatrix();
+	glTranslatef(thing.getXPos(),thing.getYPos(), 5.0f);
+	float[] color = thing.getColor();
+	glColor3f(color[0],color[1],color[2]);
+	Sphere sphere = new Sphere();
+	sphere.draw(15,20,20);
+	glPopMatrix();
+    }
     }
 }
