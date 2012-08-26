@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import Power;
 public class Player extends Character{
     Hashtable<String,Power> abilities = new Hashtable<String,Power>();
-    public Player(){
+
+    public Player(float x, float y){
+    	super(x,y);
+
     }
     
     public void addPower(String name, Power power){
@@ -13,8 +15,7 @@ public class Player extends Character{
 
     public Power fetchPower(String name){
 	    if(abilities.containsKey(name)){
-	    	return
-	    	
+	    	return abilities.get(name);
 	    }
 	    return null;
     }

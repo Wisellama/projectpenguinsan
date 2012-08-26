@@ -1,4 +1,4 @@
-public class Cell(){
+public class Cell {
     public final int pixel_length = 6;
     public final int pixel_width = 6;
     Object container = null;

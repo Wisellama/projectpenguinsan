@@ -1,8 +1,10 @@
 public class Character {
     public enum Directions {NORTH,SOUTH,EAST,WEST,NORTHWEST,NORTHEAST,SOUTHWEST,SOUTHEAST};
 
+    public boolean isDrawn;
+
     protected float xPosition, yPosition;
-    protected boolean alive, isDrawn;
+    protected boolean alive;
     protected float[] color;//temporary until we have graphics, just color of square
     protected float xVelocity, yVelocity;
     
@@ -39,53 +41,60 @@ public class Character {
 	yPosition += y;
     }
     
+    public float[] getPosition(){
+	    float[] result = {xPosition, yPosition};
+	    return result;
+    }
+    
     public void move(Directions d) {
-	switch(d) {
-	case NORTH:
-	    yPosition += yVelocity;
-	    break;
-	case WEST:
-	    xPosition -= xVelocity;
-	    break;
-	case EAST:
-	    xPosition += xVelocity;
-	    break;
-	case SOUTH:
-	    yPosition -= yVelocity;
-	    break;
-	case NORTHEAST:
-	    xPosition += xVelocity;
-	    yPosition += yVelocity;
-	    break;
-	case NORTHWEST:
-	    xPosition -= xVelocity;
-	    yPosition += yVelocity;
-	    break;
-	case SOUTHEAST:
-	    xPosition += xVelocity;
-	    yPosition -= yVelocity;
-	    break;
-	case SOUTHWEST:
-	    xPosition -= xVelocity;
-	    yPosition -= yVelocity;
-	    break;
-	}
+		switch(d) {
+		case NORTH:
+		    yPosition += yVelocity;
+		    break;
+		case WEST:
+		    xPosition -= xVelocity;
+		    break;
+		case EAST:
+		    xPosition += xVelocity;
+		    break;
+		case SOUTH:
+		    yPosition -= yVelocity;
+		    break;
+		case NORTHEAST:
+		    xPosition += xVelocity;
+		    yPosition += yVelocity;
+		    break;
+		case NORTHWEST:
+		    xPosition -= xVelocity;
+		    yPosition += yVelocity;
+		    break;
+		case SOUTHEAST:
+		    xPosition += xVelocity;
+		    yPosition -= yVelocity;
+		    break;
+		case SOUTHWEST:
+		    xPosition -= xVelocity;
+		    yPosition -= yVelocity;
+		    break;
+		}
     }
 
     public float getXPos() {
-	return xPosition;
+    	return xPosition;
     }
     public float getYPos() {
-	return yPosition;
+    	return yPosition;
     }
     public float getXVel() {
-	return xVelocity;
+    	return xVelocity;
     }
     public float getYVel() {
-	return yVelocity;
+    	return yVelocity;
     }
     public float[] getColor() {
-	return color;
+    	return color;
     }
+    
+    public void attack(){}
 
 }

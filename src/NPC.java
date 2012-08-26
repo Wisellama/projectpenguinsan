@@ -7,11 +7,20 @@ public class NPC extends Character{
 	    this.xp = xp;
     }
     
+    public NPC(String ability, int xp, float x, float y){
+		power = ability;
+		this.xp = xp;
+		super.xPosition = x;
+		super.yPosition = y;
+    }
+    
     public int getXP(){
-	return xp;
+	    return xp;
     }
     
     public String getPower(){
 	    return power;
     }
+
+
 }

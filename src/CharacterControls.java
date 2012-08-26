@@ -1,63 +1,66 @@
-import java.awt.event.KeyEvent;
-import java.util.HashSet;
-import java.util.Set;
+
+
+import org.lwjgl.input.Keyboard;
 
 
 public class CharacterControls extends ControlScheme{
 
-	private Character character;
-	private Set<Integer> pressedKeys;
-	private StateManager state;
 	
-	public CharacterControls(Character c){
-		this.character = c;
-		this.pressedKeys = new HashSet<Integer>();
+	public CharacterControls(){
 	}
 	
-	public void keyPressed(KeyEvent event) {
-		int keyCode = event.getKeyCode();
-		pressedKeys.add(keyCode);
+	public static int DOWN_KEY = Keyboard.KEY_DOWN;
+	public static int UP_KEY = Keyboard.KEY_UP;
+	public static int LEFT_KEY = Keyboard.KEY_LEFT;
+	public static int RIGHT_KEY = Keyboard.KEY_RIGHT;
+	public static int ATTACK_KEY = Keyboard.KEY_SPACE;
+	public static int PAUSE_KEY = Keyboard.KEY_ESCAPE;
+	
+	public void pollInput() {
+
 		
 		// Pause button
-		if(pressedKeys.contains(KeyEvent.VK_ESCAPE)){
-			pressedKeys.clear();
-			state.Pause();
+		if(Keyboard.isKeyDown(PAUSE_KEY)){
+			
+			StateManager.Pause();
+			return;
 		}
 		
 		// Movement Directions
-		if(pressedKeys.contains(KeyEvent.VK_DOWN)){
-		    if(pressedKeys.contains(KeyEvent.VK_LEFT)){
-		        this.character.move(Character.Directions.SOUTHWEST);
+		if(Keyboard.isKeyDown(DOWN_KEY)){
+		    if(Keyboard.isKeyDown(LEFT_KEY)){
+		    	
+		        Controller.person.move(Character.Directions.SOUTHWEST);
 		    }
-		    else if(pressedKeys.contains(KeyEvent.VK_RIGHT)){
-		        this.character.move(Character.Directions.SOUTHEAST);
-		    }
-			else{
-			    this.character.move(Character.Directions.SOUTH);
-		    }
-		}
-		if(pressedKeys.contains(KeyEvent.VK_UP)){
-		    if(pressedKeys.contains(KeyEvent.VK_LEFT)){
-		        this.character.move(Character.Directions.NORTHWEST);
-		    }
-		    else if(pressedKeys.contains(KeyEvent.VK_RIGHT)){
-		        this.character.move(Character.Directions.NORTHEAST);
+		    else if(Keyboard.isKeyDown(RIGHT_KEY)){
+		        Controller.person.move(Character.Directions.SOUTHEAST);
 		    }
 			else{
-			    this.character.move(Character.Directions.NORTH);
+			    Controller.person.move(Character.Directions.SOUTH);
 		    }
 		}
-		else if(pressedKeys.contains(KeyEvent.VK_LEFT)){
-			this.character.move(Character.Directions.WEST);
+		if(Keyboard.isKeyDown(UP_KEY)){
+		    if(Keyboard.isKeyDown(LEFT_KEY)){
+		        Controller.person.move(Character.Directions.NORTHWEST);
+		    }
+		    else if(Keyboard.isKeyDown(RIGHT_KEY)){
+		        Controller.person.move(Character.Directions.NORTHEAST);
+		    }
+			else{
+			    Controller.person.move(Character.Directions.NORTH);
+		    }
 		}
-		else if(pressedKeys.contains(KeyEvent.VK_RIGHT)){
-			this.character.move(Character.Directions.EAST);
+		else if(Keyboard.isKeyDown(LEFT_KEY)){
+			Controller.person.move(Character.Directions.WEST);
+		}
+		else if(Keyboard.isKeyDown(RIGHT_KEY)){
+			Controller.person.move(Character.Directions.EAST);
 		}
 		
 		// Action buttons
 		
-		if(pressedKeys.contains(KeyEvent.VK_SPACE)){
-			this.character.attack();
+		if(Keyboard.isKeyDown(ATTACK_KEY)){
+			Controller.person.attack();
 		}
 		
 		
@@ -68,9 +71,5 @@ public class CharacterControls extends ControlScheme{
 		
 	}
 
-	public void keyReleased(KeyEvent event) {
-		int keyCode = event.getKeyCode();
-		pressedKeys.remove(keyCode);
-	}
 
 }

@@ -1,9 +1,10 @@
-import Cell;
 public class Map{
     Cell[][] grid;
+    int height, width;
+    
     public Map(int x, int y){
-	int width = x;
-	int height = y;
+	width = x;
+	height = y;
 	grid = new Cell[x][y];
     }
     
