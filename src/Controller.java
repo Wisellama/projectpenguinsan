@@ -7,7 +7,7 @@ public class Controller {
 
     Character person;
 	
-    public void start() {
+    public void start() throws InterruptedException {
 	//initialize OpenGL stuff in View class
 	View view = new View();
 	view.start();
@@ -16,11 +16,12 @@ public class Controller {
 	person = new Character(400,300);
 
 	while (!Display.isCloseRequested()) {
-	    //go through list of characters and draw them
-	    //right now i'm cheating cause there's only one
-	    view.draw(person);
+	    //eventually give view.update() a list of all the things
+	    //on the map to update them.
+	    view.update(person);
 	    pollInput();
 	    Display.update();
+	    Thread.sleep(25);
 	}
 
 	Display.destroy();
@@ -62,7 +63,7 @@ public class Controller {
 	}
     }
 
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws InterruptedException {
 	Controller controller = new Controller();
 	controller.start();
     }
