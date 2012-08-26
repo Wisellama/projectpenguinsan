@@ -5,10 +5,9 @@ import org.lwjgl.opengl.Display;
 public class Controller {
 
 
-	
+    
 
     public Controller(){
-    	
     }
     
 
@@ -31,7 +30,6 @@ public class Controller {
 	
 		Display.destroy();
     }
-
 
     public static void main(String[] argv) throws InterruptedException {
 	    Controller controller = new Controller();
