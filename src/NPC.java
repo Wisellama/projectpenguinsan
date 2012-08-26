@@ -1,9 +1,10 @@
 public class NPC extends Character{
     String power;
     int xp;
+    
     public NPC(String ability, int xp){
-	power = ability;
-	this.xp = xp;
+	    power = ability;
+	    this.xp = xp;
     }
     
     public int getXP(){
@@ -11,6 +12,6 @@ public class NPC extends Character{
     }
     
     public String getPower(){
-	return power;
+	    return power;
     }
 }

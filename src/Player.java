@@ -1,22 +1,22 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
+
 import Power;
 public class Player extends Character{
-    ArrayList<Power> abilities = new ArrayList<Power>();
+    Hashtable<String,Power> abilities = new Hashtable<String,Power>();
     public Player(){
     }
     
-    public void addPower(Power power){
-	abilities.add(power);
+    public void addPower(String name, Power power){
+	    abilities.put(name,power);
     }
 
     public Power fetchPower(String name){
-	int length = abilities.size();
-	for (int i = 0; i < length; i++){
-	    if (abilities.get(i).name() == name){
-		return abilities.get(i);
+	    if(abilities.containsKey(name)){
+	    	return
+	    	
 	    }
-	}
-	return null;
+	    return null;
     }
 }
 
