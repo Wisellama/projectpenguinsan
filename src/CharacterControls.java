@@ -56,12 +56,13 @@ public class CharacterControls extends ControlScheme{
 			Controller.person.move(Character.Directions.EAST);
 		}
 		
-		// Action buttons
-		
-		if(Keyboard.isKeyDown(ATTACK_KEY)){
-			Controller.person.attack();
+		// Action buttons (and actions that are not continuous, i.e when you press the button, holding it down does nothing)
+		while(Keyboard.next()){
+			if(Keyboard.getEventKeyState() && Keyboard.getEventKey() == ATTACK_KEY){
+				System.out.println("HELO");
+				Controller.person.attack();
+			}
 		}
-		
 		
 		
 
