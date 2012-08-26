@@ -39,10 +39,23 @@ public class View {
         view.start(); //start it
     }
     
-    protected void randomTile() {	
-	// set the color of the quad (R,G,B,A)
-	glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
+    protected void randomTile(float x, float y) {	
+	drawTile(rand.nextFloat(),rand.nextFloat(),rand.nextFloat(),x,y);
+    }
+
+    protected void drawTile(float a, float b, float c, float x, float y) {
+	//a,b,c set color. x,y set global position.
+	//0 <= a,b,c <= 1.0     x,y are within window width/height (800x600)
+	//x,y should also line up with a 20x20 grid:
+	//x should be multiples of 40, y multiples of 30.
+
+	// set the color of the quad (R,G,B)
+	glColor3f(a,b,c);
 	    	
+	//move to position
+	glLoadIdentity();
+	glTranslatef(x,y,0f);
+
 	// draw quad
 	glBegin(GL_QUADS);
 	glVertex2f(0,0);
@@ -52,9 +65,14 @@ public class View {
 	glEnd();
     }
 
+    protected void drawTile(float[] color, float x, float y) {
+	drawTile(color[0], color[1], color[2], x, y);
+    }
+
     public void draw(Character thing) {
 	if(thing.isAlive()) {
 	    glPushMatrix();
+	    glLoadIdentity();
 	    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
 	    float[] color = thing.getColor();
 	    glColor3f(color[0],color[1],color[2]);
@@ -73,12 +91,23 @@ public class View {
     }
 
     public void drawBackground() {
-	for(int i = 0; i < 100; i++) {
-	    for(int j = 0; j < 100; j++) {
-    		glTranslatef(i*40, j*30, 0);
-    		randomTile();
-    		glLoadIdentity();
+	//top row
+	for(int i = 0; i < 20; i++) {
+	    drawTile(.5f,.5f,.5f,0f,i*30f);
+	}
+
+	//middle
+	for(int i = 1; i <= 18; i++) {
+	    drawTile(.5f,.5f,.5f,i*40,0);
+	    for(int j = 1; j <= 18; j++) {
+    		drawTile(0f,0f,0f,i*40,j*30);
 	    }
-	}	
+	    drawTile(.5f,.5f,.5f,i*40,570f);
+	}
+
+	//bottom row
+	for(int i = 0; i < 20; i++) {
+	    drawTile(.5f,.5f,.5f,760f,i*30);
+	}
     }
 }
