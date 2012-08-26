@@ -60,23 +60,28 @@ public class Character {
 		case SOUTH:
 		    yPosition -= yVelocity;
 		    break;
+
+		    //make velocity the same
+		    //currently sqrt(x^2 + y^2) or sqrt(2)
+		    //fix by dividing by sqrt(2)/2
 		case NORTHEAST:
-		    xPosition += xVelocity;
-		    yPosition += yVelocity;
+		    xPosition += xVelocity/(Math.sqrt(2));
+		    yPosition += yVelocity/(Math.sqrt(2));
 		    break;
 		case NORTHWEST:
-		    xPosition -= xVelocity;
-		    yPosition += yVelocity;
+		    xPosition -= xVelocity/(Math.sqrt(2));
+		    yPosition += yVelocity/(Math.sqrt(2));
 		    break;
 		case SOUTHEAST:
-		    xPosition += xVelocity;
-		    yPosition -= yVelocity;
+		    xPosition += xVelocity/(Math.sqrt(2));
+		    yPosition -= yVelocity/(Math.sqrt(2));
 		    break;
 		case SOUTHWEST:
-		    xPosition -= xVelocity;
-		    yPosition -= yVelocity;
+		    xPosition -= xVelocity/(Math.sqrt(2));
+		    yPosition -= yVelocity/(Math.sqrt(2));
 		    break;
 		}
+		System.out.println(Math.sqrt(xVelocity*xVelocity + yVelocity*yVelocity));
     }
 
     public float getXPos() {
