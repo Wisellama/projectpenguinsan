@@ -4,7 +4,6 @@ import org.lwjgl.opengl.Display;
 
 public class Controller {
 
-    static Character person = new Character(400,300);;
 
 	
 
@@ -14,27 +13,28 @@ public class Controller {
     
 
     public void start() throws InterruptedException {
-	//initialize OpenGL stuff in View class
-	View view = new View();
-	view.start();
-
-	//make a character to move around with the keyboard
-
-	while (!Display.isCloseRequested()) {
-	    //eventually give view.update() a list of all the things
-	    //on the map to update them.
-	    view.update(person);
-	    StateManager.getCurrentState().getControls().pollInput();
-	    Display.update();
-	    Thread.sleep(25);
-	}
-
-	Display.destroy();
+		//initialize OpenGL stuff in View class
+		View view = new View();
+		view.start();
+	
+		//make a character to move around with the keyboard
+	
+		while (!Display.isCloseRequested()) {
+		    //eventually give view.update() a list of all the things
+		    //on the map to update them.
+			State currentState = StateManager.getCurrentState();
+		    view.update(currentState.getViewables());
+		    currentState.getControls().pollInput();
+		    Display.update();
+		    Thread.sleep(25);
+		}
+	
+		Display.destroy();
     }
 
 
     public static void main(String[] argv) throws InterruptedException {
-	Controller controller = new Controller();
-	controller.start();
+	    Controller controller = new Controller();
+	    controller.start();
     }
 }

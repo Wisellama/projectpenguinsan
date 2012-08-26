@@ -4,6 +4,8 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Sphere;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*; //don't have to type 'GL11.stuff' just type 'stuff'.
@@ -11,6 +13,7 @@ import static org.lwjgl.opengl.GL11.*; //don't have to type 'GL11.stuff' just ty
 public class View {
  
     protected Random rand = new Random();
+	public static enum ViewableType {Characters};
 	
     public void start() {
         try {
@@ -52,24 +55,41 @@ public class View {
 	glEnd();
     }
 
-    public void draw(Character thing) {
-	if(thing.isAlive()) {
-	    glPushMatrix();
-	    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
-	    float[] color = thing.getColor();
-	    glColor3f(color[0],color[1],color[2]);
-	    Sphere sphere = new Sphere();
-	    sphere.draw(15,20,20);
-	    glPopMatrix();
-	}
+    public void drawCharacters(ArrayList<Character> characters){
+    	for (Character character : characters){
+    		drawCharacter(character);
+    	}
+    	
+    }
+    
+    public void drawCharacter(Character thing) {
+		if(thing.isAlive()) {
+		    glPushMatrix();
+		    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
+		    float[] color = thing.getColor();
+		    glColor3f(color[0],color[1],color[2]);
+		    Sphere sphere = new Sphere();
+		    sphere.draw(15,20,20);
+		    glPopMatrix();
+		}
+    }
+    
+    public void draw(ViewableType viewtype, Object viewable){
+    	switch(viewtype){
+    	case Characters:
+    		drawCharacters((ArrayList<Character>) viewable);
+    		break;
+    	}
     }
 
-    public void update(Character temporary) { //maybe give a list of the things
-	//on the map to go through and reset the isDrawn thing 
-	//and check if alive.
-	//for now, just the one character...you
-	drawBackground();
-	draw(temporary);
+    public void update(HashMap viewables) { //maybe give a list of the things
+		//on the map to go through and reset the isDrawn thing 
+		//and check if alive.
+		//for now, just the one character...you
+		drawBackground();
+		for (Object viewable : viewables.keySet()){
+			draw((ViewableType) viewable, viewables.get((ViewableType) viewable));
+		}
     }
 
     public void drawBackground() {

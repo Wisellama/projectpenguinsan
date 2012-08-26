@@ -27,7 +27,7 @@ public class CharacterControls extends ControlScheme{
 			}
 			
 			if(Keyboard.getEventKeyState() && Keyboard.getEventKey() == ATTACK_KEY){
-				Controller.person.attack();
+				((GameplayState)StateManager.getCurrentState()).person.attack();
 			}
 
 		}
@@ -35,31 +35,31 @@ public class CharacterControls extends ControlScheme{
 		// Movement Directions
 		if(Keyboard.isKeyDown(DOWN_KEY)){
 		    if(Keyboard.isKeyDown(LEFT_KEY)){
-		        Controller.person.move(Character.Directions.SOUTHWEST);
+		        ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.SOUTHWEST);
 		    }
 		    else if(Keyboard.isKeyDown(RIGHT_KEY)){
-		        Controller.person.move(Character.Directions.SOUTHEAST);
+		        ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.SOUTHEAST);
 		    }
 			else{
-			    Controller.person.move(Character.Directions.SOUTH);
+			    ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.SOUTH);
 		    }
 		}
 		else if(Keyboard.isKeyDown(UP_KEY)){
 		    if(Keyboard.isKeyDown(LEFT_KEY)){
-		        Controller.person.move(Character.Directions.NORTHWEST);
+		        ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.NORTHWEST);
 		    }
 		    else if(Keyboard.isKeyDown(RIGHT_KEY)){
-		        Controller.person.move(Character.Directions.NORTHEAST);
+		        ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.NORTHEAST);
 		    }
 			else{
-			    Controller.person.move(Character.Directions.NORTH);
+			    ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.NORTH);
 		    }
 		}
 		else if(Keyboard.isKeyDown(LEFT_KEY)){
-			Controller.person.move(Character.Directions.WEST);
+			((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.WEST);
 		}
 		else if(Keyboard.isKeyDown(RIGHT_KEY)){
-			Controller.person.move(Character.Directions.EAST);
+			((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.EAST);
 		}
 		
 

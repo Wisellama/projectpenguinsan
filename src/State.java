@@ -1,6 +1,9 @@
+import java.util.HashMap;
+
 
 public abstract class State {
-    public ControlScheme controls;
+    protected ControlScheme controls;
+	protected HashMap<View.ViewableType, Object> viewables;
 	
     public abstract void enter();
     public abstract void update();
@@ -8,5 +11,9 @@ public abstract class State {
     
     public ControlScheme getControls(){
     	return this.controls;
+    }
+    
+    public HashMap getViewables(){
+    	return this.viewables;
     }
 }
