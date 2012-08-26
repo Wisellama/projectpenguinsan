@@ -7,18 +7,21 @@ public class Character {
     protected float xVelocity, yVelocity;
     
     private static float[] defaultColor = {1,1,1};
-    
-    public Character(float x, float y, float[] c) {
+    Character[] charlist;
+    Character[] defaultlist = {this};
+    public Character(float x, float y, float[] c, Character[] chars) {
 	xPosition = x;
 	yPosition = y;
 	alive = true;
 	color = c;
 	xVelocity = 5;
 	yVelocity = 5;
+	charlist = chars;
     }
 
     public Character(float x, float y) {
-	this(x,y, defaultColor);
+	this(x,y, defaultColor, null);
+	charlist = defaultlist;
     }
 
     public Character() {
@@ -91,7 +94,17 @@ public class Character {
     public float[] getColor() {
     	return color;
     }
-    
-    public void attack(){}
-
+    public void updateList(Character[] clist){
+    	charlist = clist;
+    }
+    public void attack(){
+    	for (int i = 0; i<charlist.length; i++){
+    		if (distance(charlist[i].getXPos(), xPosition, charlist[i].getYPos(), yPosition)<200 && charlist[i]!=this){
+    			charlist[i].kill();
+    		}
+    	}
+    }
+    private double distance(float x1, float y1, float x2, float y2){
+    	return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+    }
 }

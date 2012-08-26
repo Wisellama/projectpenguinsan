@@ -62,14 +62,18 @@ public class View {
 	    sphere.draw(15,20,20);
 	    glPopMatrix();
 	}
-    }
+	}
 
-    public void update(Character temporary) { //maybe give a list of the things
+    public void update(Character[] temporary) { //maybe give a list of the things
 	//on the map to go through and reset the isDrawn thing 
 	//and check if alive.
 	//for now, just the one character...you
 	drawBackground();
-	draw(temporary);
+	for (int i = 0; i<temporary.length; i++){
+		temporary[i].updateList(temporary);
+		draw(temporary[i]);
+	
+	}
     }
 
     public void drawBackground() {
