@@ -29,7 +29,6 @@ public class CharacterControls extends ControlScheme{
 		// Movement Directions
 		if(Keyboard.isKeyDown(DOWN_KEY)){
 		    if(Keyboard.isKeyDown(LEFT_KEY)){
-		    	
 		        Controller.person.move(Character.Directions.SOUTHWEST);
 		    }
 		    else if(Keyboard.isKeyDown(RIGHT_KEY)){
@@ -39,7 +38,7 @@ public class CharacterControls extends ControlScheme{
 			    Controller.person.move(Character.Directions.SOUTH);
 		    }
 		}
-		if(Keyboard.isKeyDown(UP_KEY)){
+		else if(Keyboard.isKeyDown(UP_KEY)){
 		    if(Keyboard.isKeyDown(LEFT_KEY)){
 		        Controller.person.move(Character.Directions.NORTHWEST);
 		    }

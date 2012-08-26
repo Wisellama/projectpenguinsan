@@ -30,13 +30,7 @@ public class View {
 	// Clear the screen and depth buffer
 	glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 	
-	for(int i = 0; i < 100; i++) {
-	    for(int j = 0; j < 100; j++) {
-    		glTranslatef(i*40, j*30, 0);
-    		randomTile();
-    		glLoadIdentity();
-	    }
-	}
+	drawBackground(); //initial setup
  
     }
  
@@ -59,7 +53,7 @@ public class View {
     }
 
     public void draw(Character thing) {
-	if(thing.isAlive() && !thing.isDrawn) {
+	if(thing.isAlive()) {
 	    glPushMatrix();
 	    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
 	    float[] color = thing.getColor();
@@ -67,7 +61,24 @@ public class View {
 	    Sphere sphere = new Sphere();
 	    sphere.draw(15,20,20);
 	    glPopMatrix();
-	    thing.isDrawn = true;
 	}
+    }
+
+    public void update(Character temporary) { //maybe give a list of the things
+	//on the map to go through and reset the isDrawn thing 
+	//and check if alive.
+	//for now, just the one character...you
+	drawBackground();
+	draw(temporary);
+    }
+
+    public void drawBackground() {
+	for(int i = 0; i < 100; i++) {
+	    for(int j = 0; j < 100; j++) {
+    		glTranslatef(i*40, j*30, 0);
+    		randomTile();
+    		glLoadIdentity();
+	    }
+	}	
     }
 }
