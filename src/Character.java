@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Character {
     public enum Directions {NORTH,SOUTH,EAST,WEST,NORTHWEST,NORTHEAST,SOUTHWEST,SOUTHEAST};
 
@@ -7,38 +9,40 @@ public class Character {
     protected float xVelocity, yVelocity;
     
     private static float[] defaultColor = {1,1,1};
-    Character[] charlist;
-    Character[] defaultlist = {this};
-    public Character(float x, float y, float[] c, Character[] chars) {
-	xPosition = x;
-	yPosition = y;
-	alive = true;
-	color = c;
-	xVelocity = 5;
-	yVelocity = 5;
-	charlist = chars;
+    ArrayList<Character> charlist;
+    ArrayList<Character> defaultlist = new ArrayList<Character>();
+    
+    public Character(float x, float y, float[] c, ArrayList<Character> chars) {
+    	defaultlist.add(this);
+		xPosition = x;
+		yPosition = y;
+		alive = true;
+		color = c;
+		xVelocity = 5;
+		yVelocity = 5;
+		charlist = chars;
     }
 
     public Character(float x, float y) {
-	this(x,y, defaultColor, null);
-	charlist = defaultlist;
+	    this(x,y, defaultColor, null);
+	    charlist = defaultlist;
     }
 
     public Character() {
-	this(100,100);
+	    this(100,100);
     }
 
     public boolean isAlive() {
-	return alive;
+	    return alive;
     }
 
     public void kill() {
-	alive = false;
+	    alive = false;
     }
 
     public void move(float x, float y) {
-	xPosition += x;
-	yPosition += y;
+		xPosition += x;
+		yPosition += y;
     }
     
     public float[] getPosition(){
@@ -99,13 +103,14 @@ public class Character {
     public float[] getColor() {
     	return color;
     }
-    public void updateList(Character[] clist){
+    public void updateList(ArrayList<Character> clist){
     	charlist = clist;
     }
     public void attack(){
-    	for (int i = 0; i<charlist.length; i++){
-    		if (distance(charlist[i].getXPos(), xPosition, charlist[i].getYPos(), yPosition)<200 && charlist[i]!=this){
-    			charlist[i].kill();
+    	
+    	for (int i = 0; i<charlist.size(); i++){
+    		if (distance(charlist.get(i).getXPos(), xPosition, charlist.get(i).getYPos(), yPosition)<200 && charlist.get(i)!=this){
+    			charlist.get(i).kill();
     		}
     	}
     }

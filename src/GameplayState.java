@@ -13,6 +13,7 @@ public class GameplayState extends State{
 		this.person = new Character(400,300);
 	    this.person2 = new Character();
 		this.characters.add(this.person);
+		this.characters.add(this.person2);
 		this.viewables = new HashMap<View.ViewableType, Object>();
 		this.viewables.put(View.ViewableType.Characters, this.characters);
 	}

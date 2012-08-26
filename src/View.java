@@ -66,6 +66,7 @@ public class View {
 
     public void drawCharacters(ArrayList<Character> characters){
     	for (Character character : characters){
+    		character.updateList(characters);
     		drawCharacter(character);
     	}
     	
