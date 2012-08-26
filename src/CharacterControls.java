@@ -18,12 +18,18 @@ public class CharacterControls extends ControlScheme{
 	
 	public void pollInput() {
 
-		
-		// Pause button
-		if(Keyboard.isKeyDown(PAUSE_KEY)){
+		// Action buttons (and actions that are not continuous, i.e when you press the button, holding it down does nothing)
+		while(Keyboard.next()){
+			// Pause button
+			if(Keyboard.getEventKeyState() && Keyboard.getEventKey() == PAUSE_KEY){
+				StateManager.Pause();
+				return;
+			}
 			
-			StateManager.Pause();
-			return;
+			if(Keyboard.getEventKeyState() && Keyboard.getEventKey() == ATTACK_KEY){
+				Controller.person.attack();
+			}
+
 		}
 		
 		// Movement Directions
@@ -56,12 +62,7 @@ public class CharacterControls extends ControlScheme{
 			Controller.person.move(Character.Directions.EAST);
 		}
 		
-		// Action buttons
-		
-		if(Keyboard.isKeyDown(ATTACK_KEY)){
-			Controller.person.attack();
-		}
-		
+
 		
 		
 
