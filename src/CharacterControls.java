@@ -31,7 +31,8 @@ public class CharacterControls extends ControlScheme{
 	    }
 
 	}
-		
+	
+	/*old cardinal direction movement
 	// Movement Directions
 	if(Keyboard.isKeyDown(DOWN_KEY)){
 	    if(Keyboard.isKeyDown(LEFT_KEY)){
@@ -60,9 +61,26 @@ public class CharacterControls extends ControlScheme{
 	}
 	else if(Keyboard.isKeyDown(RIGHT_KEY)){
 	    ((GameplayState)StateManager.getCurrentState()).person.move(Character.Directions.EAST);
-	}
+	    }*/
 		
 
+	//new astroids-style movement
+
+	Player thePlayer =  (Player) ((GameplayState)StateManager.getCurrentState()).person;
+	
+	if(Keyboard.isKeyDown(LEFT_KEY)) {
+	    thePlayer.changeAngle(thePlayer.getSpeed());
+	}
+	if(Keyboard.isKeyDown(RIGHT_KEY)) {
+	    thePlayer.changeAngle(-(thePlayer.getSpeed()));
+	}
+	if(Keyboard.isKeyDown(UP_KEY)) {
+	    thePlayer.changeVelocity(thePlayer.getSpeed()/10f);
+	}
+	if(Keyboard.isKeyDown(DOWN_KEY)) {
+	    thePlayer.changeVelocity(-(thePlayer.getSpeed()/10f));
+	}
+	thePlayer.move();
 		
 		
 

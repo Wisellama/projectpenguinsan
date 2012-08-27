@@ -80,6 +80,11 @@ public class Character {
 	xPosition += x;
 	yPosition += y;
     }
+
+    public void move() {
+	xPosition += xVelocity;
+	yPosition += yVelocity;
+    }
     
     public float[] getPosition(){
 	float[] result = {xPosition, yPosition};

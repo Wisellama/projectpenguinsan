@@ -76,9 +76,9 @@ public class View {
     	if(thing.isAlive()) {
     	    glPushMatrix();
     	    glLoadIdentity();
-	    glRotatef(thing.getAngle(),0,0,1);
-    	    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
-    	    float[] color = thing.getColor();
+	    glTranslatef(thing.getXPos(),thing.getYPos(), 0.0f);
+	    glRotatef(thing.getAngle(),0,0,1);	   
+	    float[] color = thing.getColor();
     	    glColor3f(color[0],color[1],color[2]);
 
 	    int size = thing.getSize();
@@ -144,6 +144,7 @@ public class View {
     
 
     public void drawBackground() {
+	//just a black square
     	glColor3f(0f,0f,0f);
     	
     	glBegin(GL_QUADS);

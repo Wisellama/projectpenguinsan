@@ -20,10 +20,20 @@ public class Player extends Character{
     	color[0] = 1;
     	color[1] = 1;
     	color[2] = 1;
+	xVelocity = 0;
+	yVelocity = 0;
     }
     
     public int getSize() {
     	return size;
+    }
+
+    public int getSpeed() {
+	return speed;
+    }
+
+    public int getArmor() {
+	return armor;
     }
     
     public void addPower(String name, Power power){
@@ -35,6 +45,52 @@ public class Player extends Character{
 	    	return abilities.get(name);
 	    }
 	    return null;
+    }
+
+    public void changeAngle(float change) {
+	angle += change;
+	if(angle > 360) {
+	    angle = 0;
+	}
+	if(angle < 0) {
+	    angle = 360;
+	}
+    }
+
+    public void move() {
+	super.move();
+	if(xPosition > 800) {
+	    xPosition = 0;
+	}
+	else if(xPosition < 0) {
+	    xPosition = 800;
+	}
+
+	if(yPosition > 600) {
+	    yPosition = 0;
+	}
+	else if(yPosition < 0) {
+	    yPosition = 600;
+	}
+    }
+
+    public void changeVelocity(float change) {
+	xVelocity += change*Math.cos(angle*Math.PI/180);
+	yVelocity += change*Math.sin(angle*Math.PI/180);
+
+	/*if(xVelocity > 20) {
+	    xVelocity = 20;
+	}
+	else if(xVelocity < 0) {
+	    xVelocity = 0;
+	}
+
+	if(yVelocity > 20) {
+	    yVelocity = 20;
+	}
+	else if(yVelocity < 0) {
+	    yVelocity = 0;
+	    }*/
     }
 }
 
