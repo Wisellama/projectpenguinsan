@@ -1,26 +1,46 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Character {
     public enum Directions {NORTH,SOUTH,EAST,WEST,NORTHWEST,NORTHEAST,SOUTHWEST,SOUTHEAST};
+    public enum Shapes {TRIANGLE,SQUARE,CIRCLE,PLUS};
 
     protected float xPosition, yPosition;
     protected boolean alive;
     protected float[] color;//temporary until we have graphics, just color of square
-    protected float xVelocity, yVelocity;
+    protected float xVelocity, yVelocity, angle;
     
     private static float[] defaultColor = {1,1,1};
     ArrayList<Character> charlist;
     ArrayList<Character> defaultlist = new ArrayList<Character>();
+
+    private Random rand = new Random();
+    protected Shapes shape;
+    protected int size = 5;
     
     public Character(float x, float y, float[] c, ArrayList<Character> chars) {
     	defaultlist.add(this);
-		xPosition = x;
-		yPosition = y;
-		alive = true;
-		color = c;
-		xVelocity = 5;
-		yVelocity = 5;
-		charlist = chars;
+	xPosition = x;
+	yPosition = y;
+	alive = true;
+	color = c;
+	xVelocity = 5;
+	yVelocity = 5;
+	charlist = chars;
+	angle = 0;
+
+	switch(rand.nextInt(3)) {
+	case 0:
+	    shape = Character.Shapes.SQUARE;
+	    break;
+	case 1:
+	    shape = Character.Shapes.PLUS;
+	    break;
+	case 2:
+	default:
+	    shape = Character.Shapes.CIRCLE;
+	    break;
+	}
     }
 
     public Character(float x, float y) {
@@ -102,6 +122,16 @@ public class Character {
     }
     public float[] getColor() {
     	return color;
+    }
+    public float getAngle() {
+    		return angle;
+    }
+    public Shapes getShape() {
+    		return shape;
+    }
+    public int getSize() {
+    	//should only be used for the Player, otherwise size is always 5
+    	return size;
     }
     public void updateList(ArrayList<Character> clist){
     	charlist = clist;
