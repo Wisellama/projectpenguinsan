@@ -67,6 +67,7 @@ public class Controller {
 		view.update(currentState.getViewables());
 		currentState.getControls().pollInput();
 		currentState.update(currentState.getViewables());
+		((GameplayState)currentState).getPlayer().checkIfHit();
 		Display.update();
 		Thread.sleep(25);
 		timer += 25;

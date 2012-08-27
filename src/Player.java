@@ -37,14 +37,14 @@ public class Player extends Character{
     }
     
     public void addPower(String name, Power power){
-	    abilities.put(name,power);
+	abilities.put(name,power);
     }
 
     public Power fetchPower(String name){
-	    if(abilities.containsKey(name)){
-	    	return abilities.get(name);
-	    }
-	    return null;
+	if(abilities.containsKey(name)){
+	    return abilities.get(name);
+	}
+	return null;
     }
 
     public void changeAngle(float change) {
@@ -74,23 +74,68 @@ public class Player extends Character{
 	}
     }
 
-    public void changeVelocity(float change) {
-	xVelocity += change*Math.cos(angle*Math.PI/180);
-	yVelocity += change*Math.sin(angle*Math.PI/180);
+    public void checkIfHit() {
+	Character thing;
+	for (int i = 0; i<charlist.size(); i++){
+	    thing = charlist.get(i);
+	    if (distance(thing.getXPos(), xPosition, thing.getYPos(), yPosition)<(size*10) && thing!=this){
+		thing.kill();
+		switch (thing.shape) {
+		case TRIANGLE:
+		    if(thing.color[0] == 1) {
+			//red = bad, subtract
+			speed--;
+		    }
+		    else if(thing.color[2] == 1) {
+			//blue = good, add
+			speed++;
+		    }
+		    break;
+		    
+		case CIRCLE:
+		    if(thing.color[0] == 1) {
+			//red = bad, subtract
+			size--;
+		    }
+		    else if(thing.color[2] == 1) {
+			//blue = good, add
+			size++;
+		    }
+		    break;
 
-	/*if(xVelocity > 20) {
-	    xVelocity = 20;
-	}
-	else if(xVelocity < 0) {
-	    xVelocity = 0;
-	}
+		case SQUARE:
+		    if(thing.color[0] == 1) {
+			//red = bad, subtract
+			armor--;
+		    }
+		    else if(thing.color[2] == 1) {
+			//blue = good, add
+			armor++;
+		    }
+		    break;
+		    
+		}
+		}
+	    }
+	    }
 
-	if(yVelocity > 20) {
-	    yVelocity = 20;
+	    public void changeVelocity(float change) {
+		xVelocity += change*Math.cos(angle*Math.PI/180);
+		yVelocity += change*Math.sin(angle*Math.PI/180);
+
+		/*if(xVelocity > 20) {
+		  xVelocity = 20;
+		  }
+		  else if(xVelocity < 0) {
+		  xVelocity = 0;
+		  }
+
+		  if(yVelocity > 20) {
+		  yVelocity = 20;
+		  }
+		  else if(yVelocity < 0) {
+		  yVelocity = 0;
+		  }*/
+	    }
 	}
-	else if(yVelocity < 0) {
-	    yVelocity = 0;
-	    }*/
-    }
-}
 
