@@ -17,6 +17,9 @@ public class Player extends Character{
     	speed = 5;
     	armor = 0;
     	shape = Character.Shapes.TRIANGLE;
+    	color[0] = 1;
+    	color[1] = 1;
+    	color[2] = 1;
     }
     
     public int getSize() {

@@ -11,7 +11,7 @@ public class GameplayState extends State{
 		this.controls = new CharacterControls();
 		this.characters = new ArrayList<Character>();
 		this.person = new Player(400,300);
-	    this.person2 = new Character();
+		this.person2 = new Character();
 		this.characters.add(this.person);
 		this.characters.add(this.person2);
 		this.viewables = new HashMap<View.ViewableType, Object>();
@@ -29,5 +29,13 @@ public class GameplayState extends State{
 	public void leave() {
 	
 	}
+
+    public ArrayList getCharacterList() {
+	return characters;
+    }
+
+    public void addCharacter(Character thing) {
+	characters.add(thing);
+    }
 
 }

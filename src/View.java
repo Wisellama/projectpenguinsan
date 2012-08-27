@@ -104,6 +104,7 @@ public class View {
 		circle.draw(size*3f,15,15);
 		break;
 	    case PLUS:
+	    glBegin(GL_QUADS);
 	    glVertex3f(size*3f,(float)size,0f);
 	    glVertex3f(size*3f,-(float)size,0f);
 	    glVertex3f(-size*3f,-(float)size,0f);
@@ -113,6 +114,7 @@ public class View {
 	    glVertex3f(-(float)size,size*3f,0f);
 	    glVertex3f(-(float)size,-size*3f,0f);
 	    glVertex3f((float)size,-size*3f,0f);
+	    glEnd();
 		break;
 	    }	
     	    glPopMatrix();
@@ -127,10 +129,7 @@ public class View {
     	}
     }
 
-    public void update(HashMap viewables) { //maybe give a list of the things
-	//on the map to go through and reset the isDrawn thing 
-	//and check if alive.
-	//for now, just the one character...you
+    public void update(HashMap viewables) { 
 	drawBackground();
 	for (Object viewable : viewables.keySet()){
 	    draw((ViewableType) viewable, viewables.get((ViewableType) viewable));
