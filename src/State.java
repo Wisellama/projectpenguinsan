@@ -6,7 +6,7 @@ public abstract class State {
 	protected HashMap<View.ViewableType, Object> viewables;
 	
     public abstract void enter();
-    public abstract void update();
+    public abstract void update(HashMap hm);
     public abstract void leave();
     
     public ControlScheme getControls(){

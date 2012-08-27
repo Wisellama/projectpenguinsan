@@ -55,15 +55,18 @@ public class Controller {
 		    
 		float angle = (float) Math.atan((300-y)/(400-x));
 
-		float[] color = {1,1,1};
+		float[] color = {1f,1f,1f};
 		Character newThing = new Character(x,y,color,((GameplayState)currentState).getCharacterList());
-		newThing.setVelocity(angle,(float) (rand.nextFloat()+.1)*5);
+		newThing.setVelocity(angle,5);//(float) (rand.nextFloat()+.1)*5);
 
 		((GameplayState) currentState).addCharacter(newThing);
+
+		timer = 0;
 	    }
 	    
 		view.update(currentState.getViewables());
 		currentState.getControls().pollInput();
+		currentState.update(currentState.getViewables());
 		Display.update();
 		Thread.sleep(25);
 		timer += 25;

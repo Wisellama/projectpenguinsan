@@ -22,8 +22,13 @@ public class GameplayState extends State{
 
 	}
 
-	public void update() {
-
+	public void update(HashMap viewables) {
+	    for (Object viewable : viewables.keySet()){
+		ArrayList al = ((ArrayList)viewables.get((View.ViewableType) viewable));
+		for(int i = 0; i < al.size(); i++) {
+		    ((Character)al.get(i)).move();
+		}
+	    }
 	}
 
 	public void leave() {
